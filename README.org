@@ -1,0 +1,49 @@
+#+title: Subman
+
+This utility aims to help you manage your subtitles. For now it only helps you rename your subtitles to the name of the episode it corresponds. This allows programs like ~mpv~ to find this subtitle automatically when you play any media.
+
+* Usage
+There are 4 variables that can be supplied as command line arguments:
+#+begin_src sh
+Usage: subman [OPTIONS]
+
+Options:
+  -s, --subtitle-extension <SUBTITLE_EXTENSION>          [default: srt]
+  -v, --video-extension <VIDEO_EXTENSION>                [default: mkv]
+      --video-regex-episode <VIDEO_REGEX_EPISODE>        [default: E(\d{2})]
+      --subtitle-regex-episode <SUBTITLE_REGEX_EPISODE>  [default: (\d{2})]
+  -h, --help                                             Print help
+
+#+end_src
+
+From all these arguments the regex have to be in the form that is accepted by the regex create in cargo ([[https://crates.io/crates/regex][regex]])
+
+** Example
+Say you have files in the form:
+#+begin_src text
+nameS01E01.mkv
+nameS01E02.mkv
+nameS01E03.mkv
+randomName01.srt
+randomName02.srt
+randomName03.srt
+#+end_src
+we can use the basic command and the rest will be done for us (because of the defaults)
+#+begin_src sh
+subman
+#+end_src
+
+resulting in
+#+begin_src text
+nameS01E01.mkv
+nameS01E01.srt
+nameS01E02.mkv
+nameS01E02.srt
+nameS01E03.mkv
+nameS01E03.srt
+#+end_src
+
+
+
+* Future
+This project is simple and I will add to it as my needs increase for further management of subtitles
